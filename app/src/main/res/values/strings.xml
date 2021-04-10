@@ -2,5 +2,5 @@
     <string name="app_name">GameLibraryAssignment</string>
     <string name="button_addLibrary">Add Library</string>
     <string name="hint_libraryTitle">Library Title</string>
-
+    <string name="hint_libraryDescription">Library Description</string>
 </resources>

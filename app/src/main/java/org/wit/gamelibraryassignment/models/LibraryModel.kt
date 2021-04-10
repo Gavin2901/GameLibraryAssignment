@@ -1,5 +1,5 @@
 package org.wit.gamelibraryassignment.models
 
-data class LibraryModel(var title: String = "")
-
+data class LibraryModel(var title: String = "",
+                          var description: String = "")
 
