@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_library.view.*
 import org.wit.gamelibraryassignment.R
+import org.wit.gamelibraryassignment.helpers.readImageFromPath
 import org.wit.gamelibraryassignment.models.LibraryModel
 
 interface LibraryListener {
@@ -31,6 +32,7 @@ class LibraryAdapter constructor(private var libraries: List<LibraryModel>,
         fun bind(library: LibraryModel,  listener : LibraryListener) {
             itemView.libraryTitle.text = library.title
             itemView.description.text = library.description
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, library.image))
             itemView.setOnClickListener { listener.onLibraryClick(library) }
         }
     }

@@ -23,11 +23,12 @@ class LibraryMemStore : LibraryStore, AnkoLogger {
         logAll()
     }
 
-    override fun update(library: LibraryModel) {
-        var foundLibrary: LibraryModel? = libraries.find { p -> p.id == library.id }
+    override fun update(placemark: LibraryModel) {
+        var foundLibrary: LibraryModel? = libraries.find { p -> p.id == placemark.id }
         if (foundLibrary != null) {
-            foundLibrary.title = library.title
-            foundLibrary.description = library.description
+            foundLibrary.title = placemark.title
+            foundLibrary.description = placemark.description
+            foundLibrary.image = placemark.image
             logAll()
         }
     }
