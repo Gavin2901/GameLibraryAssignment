@@ -11,10 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameLibraryAssignment">
         <activity android:name=".activities.LibraryActivity">
+        </activity>
+        <activity android:name=".activities.LibraryListActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

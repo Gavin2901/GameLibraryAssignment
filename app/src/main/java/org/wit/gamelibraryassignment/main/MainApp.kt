@@ -12,6 +12,8 @@ class MainApp : Application(), AnkoLogger {
 
     override fun onCreate() {
         super.onCreate()
-        info("Library started")
+        info("Placemark started")
+
     }
+
 }

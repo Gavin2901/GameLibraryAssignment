@@ -25,11 +25,14 @@ class LibraryActivity : AppCompatActivity(), AnkoLogger {
             library.description = libraryDescription.text.toString()
             if (library.title.isNotEmpty()) {
                 app.libraries.add(library.copy())
-                info("add Button Pressed: $libraryTitle")
-                app.libraries.forEach { info("add Button Pressed: ${it.title}, ${it.description}")}
-            }
-            else {
-                toast ("Please Enter a title")
+                info("add Button Pressed: ${library}")
+                for (i in app.libraries.indices) {
+                    info("Library[$i]:${app.libraries[i]}")
+                }
+                setResult(AppCompatActivity.RESULT_OK)
+                finish()
+            } else {
+                toast("Please Enter a title")
             }
         }
     }

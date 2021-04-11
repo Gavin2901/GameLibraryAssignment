@@ -3,4 +3,5 @@
     <string name="button_addLibrary">Add Library</string>
     <string name="hint_libraryTitle">Library Title</string>
     <string name="hint_libraryDescription">Library Description</string>
+    <string name="menu_addLibrary">Add</string>
 </resources>
