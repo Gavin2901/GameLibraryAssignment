@@ -1,18 +1,19 @@
 package org.wit.gamelibraryassignment.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_library_list.*
-import kotlinx.android.synthetic.main.card_library.view.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivityForResult
 import org.wit.gamelibraryassignment.R
 import org.wit.gamelibraryassignment.main.MainApp
 import org.wit.gamelibraryassignment.models.LibraryModel
-import org.jetbrains.anko.startActivityForResult
 
-class LibraryListActivity : AppCompatActivity() {
+
+class LibraryListActivity : AppCompatActivity(), LibraryListener {
 
     lateinit var app: MainApp
 
@@ -24,7 +25,7 @@ class LibraryListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = LibraryAdapter(app.libraries)
+        recyclerView.adapter = LibraryAdapter(app.libraries.findAll(), this)
 
         toolbar.title = title
         setSupportActionBar(toolbar)
@@ -41,33 +42,14 @@ class LibraryListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-}
 
-class LibraryAdapter constructor(private var libraries: List<LibraryModel>) :
-        RecyclerView.Adapter<LibraryAdapter.MainHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(
-                LayoutInflater.from(parent.context).inflate(
-                        R.layout.card_library,
-                        parent,
-                        false
-                )
-        )
+    override fun onLibraryClick(library: LibraryModel) {
+        startActivityForResult(intentFor<LibraryActivity>().putExtra("library_edit", library), 0)
     }
 
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val library = libraries[holder.adapterPosition]
-        holder.bind(library)
-    }
-
-    override fun getItemCount(): Int = libraries.size
-
-    class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(library: LibraryModel) {
-            itemView.libraryTitle.text = library.title
-            itemView.description.text = library.description
-        }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
+

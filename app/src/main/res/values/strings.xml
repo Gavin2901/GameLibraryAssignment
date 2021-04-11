@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">GameLibraryAssignment</string>
-    <string name="button_addLibrary">Add Library</string>
-    <string name="hint_libraryTitle">Library Title</string>
-    <string name="hint_libraryDescription">Library Description</string>
+    <string name="button_addLibrary">Add Game</string>
+    <string name="hint_libraryTitle">Game Title</string>
+    <string name="hint_libraryDescription">Game Description</string>
     <string name="menu_addLibrary">Add</string>
+    <string name="menu_cancelLibrary">Cancel</string>
+    <string name="enter_library_title"> Please enter a Game Title </string>
+    <string name="save_library"> Save Game </string>
 </resources>
