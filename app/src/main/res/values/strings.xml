@@ -13,4 +13,5 @@
     <string name="game_image">Game image</string>
     <string name="button_dev_location">Set Developer Location</string>
     <string name="title_activity_maps">Map</string>
+    <string name="menu_deleteLibrary">Delete</string>
 </resources>

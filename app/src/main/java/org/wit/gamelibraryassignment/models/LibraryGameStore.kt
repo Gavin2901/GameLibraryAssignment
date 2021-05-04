@@ -9,7 +9,7 @@ internal fun getId(): Long {
     return lastId++
 }
 
-class LibraryMemStore : LibraryStore, AnkoLogger {
+class LibraryGameStore : LibraryStore, AnkoLogger {
 
     val libraries = ArrayList<LibraryModel>()
 
@@ -23,18 +23,27 @@ class LibraryMemStore : LibraryStore, AnkoLogger {
         logAll()
     }
 
-    override fun update(placemark: LibraryModel) {
-        var foundLibrary: LibraryModel? = libraries.find { p -> p.id == placemark.id }
-        if (foundLibrary != null) {
-            foundLibrary.title = placemark.title
-            foundLibrary.description = placemark.description
-            foundLibrary.image = placemark.image
-            logAll()
-        }
-    }
+
 
     fun logAll() {
         libraries.forEach { info("${it}") }
+    }
+
+    override fun update(library: LibraryModel) {
+        var foundLocation: LibraryModel? = libraries.find { p -> p.id == library.id }
+        if (foundLocation != null) {
+            foundLocation.title = library.title
+            foundLocation.description = library.description
+            foundLocation.image = library.image
+            foundLocation.lat = library.lat
+            foundLocation.lng = library.lng
+            foundLocation.zoom = library.zoom
+            logAll();
+        }
+    }
+
+    override fun delete(library: LibraryModel) {
+        libraries.remove(library)
     }
 }
 

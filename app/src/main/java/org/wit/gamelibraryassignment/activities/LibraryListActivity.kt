@@ -18,15 +18,16 @@ class LibraryListActivity : AppCompatActivity(), LibraryListener {
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library_list)
         app = application as MainApp
 
+        //layout and populate for display
         val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = LibraryAdapter(app.libraries.findAll(), this)
+        recyclerView.layoutManager = layoutManager   //recyclerView is a widget in activity_placemark_list.xml
+        loadLibrary()
 
+        //enable action bar and set title
         toolbar.title = title
         setSupportActionBar(toolbar)
     }
@@ -48,8 +49,17 @@ class LibraryListActivity : AppCompatActivity(), LibraryListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        recyclerView.adapter?.notifyDataSetChanged()
+        loadLibrary()
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    private fun loadLibrary() {
+        showLibrarys(app.libraries.findAll())
+    }
+    fun showLibrarys (libraries: List<LibraryModel>) {
+        recyclerView.adapter = LibraryAdapter(libraries  , this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
 }
 

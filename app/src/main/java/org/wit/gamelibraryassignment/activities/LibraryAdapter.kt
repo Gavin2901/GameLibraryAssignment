@@ -30,7 +30,7 @@ class LibraryAdapter constructor(private var libraries: List<LibraryModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(library: LibraryModel,  listener : LibraryListener) {
-            itemView.libraryTitle.text = library.title
+            itemView.gameTitle.text = library.title
             itemView.description.text = library.description
             itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, library.image))
             itemView.setOnClickListener { listener.onLibraryClick(library) }
